@@ -1,0 +1,11 @@
+{
+  "name": "node-multistage-example",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p dist && cp src/server.js dist/server.js",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

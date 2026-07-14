@@ -1,0 +1,38 @@
+name: Build all example Dockerfiles
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example:
+          - day-2/01-first-images/nginx-static
+          - day-2/01-first-images/flask-app
+          - day-2/01-first-images/node-api
+          - day-3/01-go
+          - day-3/02-node
+          - day-4/01-react
+          - day-4/02-java-spring
+          - day-6/04-production-example
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build ${{ matrix.example }}
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.example }}
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

@@ -1,0 +1,7 @@
+{
+  "name": "react-multistage-example",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p build && cp -r src/* build/"
+  }
+}
